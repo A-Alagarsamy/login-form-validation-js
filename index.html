@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login please</title>
+    <link rel="stylesheet" href="my.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Mr+Dafoe&display=swap" rel="stylesheet"> 
+
+
+
+
+</head>
+<body>
+
+    <form action="" id="form" class="formcontrol">
+    
+            <div class="container">
+                <div class="header"><h1>create account</h1></div>
+
+               
+                    <div class="formcontrol">
+                        <label for="username" >username</label>
+                        <input type="text" id="username">
+                        <small>error message</small>
+                     </div>
+                     <div class="formcontrol">
+                        <label for="email" >email</label>
+                        <input type="text" id="email">
+                        <small>error message</small>
+                     </div>
+                     <div class="formcontrol">
+                        <label for="password" >password</label>
+                        <input type="text" id="password">
+                        <small>error message</small>
+                     </div>
+                     <div class="formcontrol">
+                        <label for="password2" >confirm password</label>
+                        <input type="text" id="password2">
+                        <small>error message</small>
+                     </div>
+                     <br>
+                     <button type="submit">Register</button>
+                    </div>
+
+            </div>
+        </form>
+
+
+        <script>
+
+        const form=document.getElementById("form");
+        const username=document.getElementById("username");
+        const email=document.getElementById("email");
+        const password=document.getElementById("password");
+        const password2=document.getElementById("password2");
+
+
+        form.addEventListener("submit",e =>{
+            e.preventDefault();
+            checkInput();
+        });
+
+        function checkInput()
+        {
+            const usernamevalue=username.value.trim();
+            const emailvalue=email.value.trim();
+            const passwordvalue=password.value.trim();
+            const password2value=password2.value.trim();
+
+            //username
+            if(usernamevalue === "")
+            {
+                seterror(username,"username must be filled");
+            }
+            else
+            {
+                setSuccess(username);
+
+            }
+
+            //email
+
+            if(emailvalue === "")
+            {
+                seterror(email,"email must be filled");
+            }
+            else if(!isemail(emailvalue))
+            {
+                seterror(email,"email must be filled" );
+            }
+            else
+            {
+                setSuccess(email)
+            }
+
+            //password
+            
+            if(passwordvalue ==="")
+            {
+                seterror(password,"must be filled" )
+            }
+            else if (passwordvalue.length < 6) 
+            {
+                seterror(password, "password must be 6 letter");
+            }
+            else
+            {
+                setSuccess(password)
+            }
+
+            //confirm password
+            
+
+            if(password2value ==="")
+            {
+                seterror(password2,"must be filled")
+            }
+            else if(passwordvalue !==password2value)
+            {
+                seterror(password2,"password does not match")
+            }
+            else
+            {
+                setSuccess(password2)
+            }
+
+
+           function isemail(email)
+            {
+                return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+            }
+
+
+            function seterror(input,message)
+            {
+                const formcontrol =input.parentElement;
+                const  small=formcontrol.querySelector("small");
+                formcontrol.className="formcontrol error";
+                small.textContent=message;
+            }
+
+            function setSuccess(input)
+            {
+                const formcontrol =input.parentElement;
+                const  small=formcontrol.querySelector("small");
+                formcontrol.className="formcontrol success";
+                small.textContent=""
+            }
+            
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+
+
+
+
+
+</body>
+</html>
